@@ -16,13 +16,38 @@ namespace HalakAPI.Controllers
             {
                 using (var context = new HalakContext())
                 {
-                    var result = context.Horgaszoks.ToList();
-                    return Ok(result);
+                    var response = context.Horgaszoks.ToList();
+                    return Ok(response);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(400);
+            }
+        }
+
+        [HttpGet("ById/{id}")]
+
+        public IActionResult GetById(int id)
+        {
+            try
+            {
+                using (var context = new HalakContext())
+                {
+                    var response = context.Horgaszoks.FirstOrDefault(x => x.Id == id);
+                    if (response == null)
+                    {
+                        return NotFound("Nincs ilyen azonosítójú horgász!");
+                    }
+                    else
+                    {
+                        return Ok(response);
+                    }                    
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(400);
             }
         }
     }
