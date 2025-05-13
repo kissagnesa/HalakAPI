@@ -16,8 +16,8 @@ namespace HalakAPI.Controllers
             {
                 using (var context = new HalakContext())
                 {
-                    var horgaszok = context.Horgaszoks.ToList();
-                    return Ok(horgaszok);
+                    var result = context.Horgaszoks.ToList();
+                    return Ok(result);
                 }
             }
             catch (Exception ex)
