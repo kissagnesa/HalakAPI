@@ -5,6 +5,7 @@ namespace HalakAPI
 {
     public class Program
     {
+        public static string UID = "FKB3F4FEA09CE43C";
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
